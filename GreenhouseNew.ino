@@ -94,27 +94,59 @@ void loop() {
   str =String("Humidity:")+String(h)+String("Tempurature:")+String(t)+String("Soil Moisture:")+String(percent);
   Serial1.println(str);
 
-  digitalWrite(SelectBit_A, 0);
-  digitalWrite(SelectBit_B, 0);
-  digitalWrite(SelectBit_C, 1);
 
-  delay(1000);
+  if(percent<100)
+  {
+    digitalWrite(SelectBit_A, 0);
+    digitalWrite(SelectBit_B, 0);
+    digitalWrite(SelectBit_C, 1);
+    Serial.println("Water Pump On");
+  }
 
-  digitalWrite(SelectBit_A, 0);
-  digitalWrite(SelectBit_B, 1);
-  digitalWrite(SelectBit_C, 0);
-
-  delay(1000);
-
-  digitalWrite(SelectBit_A, 0);
-  digitalWrite(SelectBit_B, 1);
-  digitalWrite(SelectBit_C, 1);
-
-  delay(1000);
-
+  else if(t>25)
+  {
   digitalWrite(SelectBit_A, 0);
   digitalWrite(SelectBit_B, 0);
   digitalWrite(SelectBit_C, 0);
+  Serial.println("Cooling Fan On");  
+  }
+
+  else if (h>50)
+  {
+  digitalWrite(SelectBit_A, 0);
+  digitalWrite(SelectBit_B, 1);
+  digitalWrite(SelectBit_C, 1);
+  Serial.println("Exhaust Fan On");
+  }
+
+  else{
+  digitalWrite(SelectBit_A, 1);
+  digitalWrite(SelectBit_B, 1);
+  digitalWrite(SelectBit_C, 1); 
+  Serial.println("Normal Condition");   
+  }
+
+//  digitalWrite(SelectBit_A, 0);
+//  digitalWrite(SelectBit_B, 0);
+//  digitalWrite(SelectBit_C, 1);
+//
+//  delay(1000);
+//
+//  digitalWrite(SelectBit_A, 0);
+//  digitalWrite(SelectBit_B, 1);
+//  digitalWrite(SelectBit_C, 0);
+//
+//  delay(1000);
+//
+//  digitalWrite(SelectBit_A, 0);
+//  digitalWrite(SelectBit_B, 1);
+//  digitalWrite(SelectBit_C, 1);
+//
+//  delay(1000);
+//
+//  digitalWrite(SelectBit_A, 0);
+//  digitalWrite(SelectBit_B, 0);
+//  digitalWrite(SelectBit_C, 0);
 
   
 }
